@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{student/base::layout(~{::section})}">
+
+    <head>
+        <meta charset="UTF-8">
+        <title>Student Profile Page</title>
+    </head>
+    <body>
+        <section>
+            <!-- Display registered courses and provide an option to drop -->
+            <div class="container">
+                <h3 th:text="${student.fName} + ' ' + ${student.lName} + '\'s Registered Courses'"></h3>
+
+                <table class="table">
+                    <thead class="thead-dark">
+                    <tr>
+                        <th>CRN</th>
+                        <th>Course Number</th>
+                        <th>Title</th>
+                        <th>Term</th>
+                        <th>Faculty</th>
+                        <th>Timings</th>
+                        <th>Actions</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="course : ${registeredCourses}">
+                        <td th:text="${course.crn}"></td>
+                        <td th:text="${course.courseNumber}"></td>
+                        <td th:text="${course.title}"></td>
+                        <td th:text="${course.term}"></td>
+                        <td th:text="${course.faculty?.fName} ${course.faculty?.lName}"></td>
+                        <td th:text="${course.timings}"></td>
+                        <td>
+                            <!-- Drop button triggers the course dropping -->
+                            <form th:action="@{'/student/course/drop/' + ${student.userId} + '/' + ${course.crn}}" method="post">
+                                <button type="submit" class="btn btn-danger btn-sm">Drop</button>
+                            </form>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </section>
+    </body>
+</html>

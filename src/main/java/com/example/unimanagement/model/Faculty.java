@@ -6,7 +6,7 @@ import jakarta.persistence.*;
 //@Table(name = "faculty")
 public class Faculty extends User{
 
-    @OneToMany(mappedBy = "faculty", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "faculty", fetch = FetchType.EAGER, orphanRemoval = true)
     private Set<Course> coursesTeach;
 
     public Set<Course> getCoursesTeach() {
@@ -17,7 +17,7 @@ public class Faculty extends User{
         this.coursesTeach = coursesTeach;
     }
 
-    public Faculty(long userId, String fName, String lName, String email, String password, UserRole role, Set<Course> coursesTeach) {
+    public Faculty(int userId, String fName, String lName, String email, String password, UserRole role, Set<Course> coursesTeach) {
         super(userId, fName, lName, email, password, role);
         this.coursesTeach = coursesTeach;
     }
@@ -26,7 +26,7 @@ public class Faculty extends User{
         this.coursesTeach = coursesTeach;
     }
 
-    public Faculty(long userId, String fName, String lName, String email, String password, UserRole role) {
+    public Faculty(int userId, String fName, String lName, String email, String password, UserRole role) {
         super(userId, fName, lName, email, password, role);
     }
 

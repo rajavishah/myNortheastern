@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{admin/base::layout(~{::section})}">
+<head>
+    <meta charset="UTF-8">
+    <title>Faculty Specific Details</title>
+</head>
+<body>
+<!--<section th:fragment="content">-->
+<section>
+    <div class="card mr-3 ml-3">
+        <div class="card-body">
+            <div class="container text-center">
+                <img class="" style="width: 200px" src="" th:src="@{/img/Faculty-Profile.png}"/>
+
+                <h3 class="mt-3">
+                    <span th:text="${faculty.fName}"></span>
+                    <span th:text="${faculty.lName}"></span>
+                </h3>
+
+                <table class="table">
+                    <thead class="thead-dark">
+                    <tr>
+                        <th>NUID#</th>
+                        <th>S2023NU<span th:text="${faculty.userId}"></span></th>
+                    </tr>
+                    </thead>
+
+                    <tbody>
+                    <tr>
+                        <td>Email</td>
+                        <td th:text="${faculty.email}"></td>
+                    </tr>
+                    <tr>
+                        <td>Password</td>
+                        <td th:text="${faculty.password}"></td>
+                    </tr>
+                    </tbody>
+                </table>
+                <a th:href="@{'/admin/manage/faculty/update/'+${faculty.userId}}" class="btn btn-primary btn-sm">Update</a>
+                <a th:href="@{'/admin/manage/faculty/delete/'+${faculty.userId}}" class="btn btn-danger btn-sm">Delete</a>
+
+            </div>
+        </div>
+    </div>
+</section>
+</body>
+</html>

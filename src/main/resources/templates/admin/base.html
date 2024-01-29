@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:fragment="layout(content)">
+<!--th:fragment="layout(content)"-->
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link th:href="@{/css/style.css}" rel="stylesheet" />
+    <title th:text="${title}">AdminBase Html</title>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top bg-primary">
+        <a class="navbar-brand" href="#">MyNortheastern - Admin Dashboard</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ml-auto text-uppercase bg-primary">
+
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Welcome <span th:text="${admin.fName}"></span></a>
+                </li>
+
+                <li class="nav-item">
+                    <a th:href="@{/manage/student}" class="nav-link" href="#" tabindex="-1">Manage Student</a>
+                </li>
+
+                <li class="nav-item">
+                    <a th:href="@{/manage/faculty}" class="nav-link" href="#" tabindex="-1">Manage Faculty</a>
+                </li>
+
+                <li class="nav-item">
+                    <a th:href="@{/course/}" class="nav-link" href="#" tabindex="-1">Manage Course</a>
+                </li>
+
+
+                <li class="nav-item">
+                    <a th:href="@{/admin/login}" class="nav-link" href="#" tabindex="-1">ADMIN</a>
+                </li>
+
+                <li class="nav-item">
+                    <a th:href="@{/logout}" href="#" class="nav-link" tabindex="-1">Logout</a>
+                </li>
+            </ul>
+
+        </div>
+    </nav>
+
+    <div th:if="${session.message}" th:classappend="${session.message.type}" class="alert" role="alert">
+        <p th:text="${session.message.content}"></p>
+
+<!--        <span th:text="${session.removeAttribute('message')}"></span>-->
+    </div>
+
+
+    <!--Sidebar-->
+<!--    For Student-->
+    <div class="sidebar mt-2">
+
+        <span onclick="toggleSidebar()" class="crossBtn">&times;</span>
+
+        <a href="#" th:href="@{/admin/profile}" class="item">My Profile</a>
+
+        <a href="#" th:href="@{/admin/manage/student/viewall}" class="item"><i class="fa-solid fa-users-between-lines"></i> View All Students</a>
+        <a href="#" th:href="@{/admin/manage/student/add}" class="item"><i class="fa-duotone fa-graduation-cap"></i> Create Student</a>
+
+        <a href="#" th:href="@{/admin/manage/faculty/viewall}" class="item"><i class="fa-solid fa-users-between-lines"></i> View All Faculties</a>
+        <a href="#" th:href="@{/admin/manage/faculty/add}" class="item"><i class="fa-duotone fa-graduation-cap"></i> Add Faculty</a>
+
+        <a href="#" th:href="@{/admin/manage/course/viewall}" class="item"><i class="fa-solid fa-users-between-lines"></i> View All Courses</a>
+        <a href="#" th:href="@{/admin/manage/course/add}" class="item"><i class="fa-duotone fa-graduation-cap"></i> Create Course</a>
+
+        <div class="divider">
+        </div>
+    </div>
+
+<!--    For Faculty-->
+<!--    <div class="sidebar mt-2">-->
+<!--        <span onclick="toggleSidebar()" class="crossBtn">&times;</span>-->
+<!--        <a href="#" th:href="@{/admin/manage/faculty/viewall}" class="item"><i class="fa-solid fa-users-between-lines"></i> View All Faculties</a>-->
+<!--        <a href="#" th:href="@{/admin/manage/faculty/add}" class="item"><i class="fa-duotone fa-graduation-cap"></i> Add Faculty</a>-->
+<!--        <a href="#" class="item">Random</a>-->
+<!--        <a href="#" class="item">Random</a>-->
+<!--        <div class="divider">-->
+<!--        </div>-->
+<!--    </div>-->
+
+<!--    For Course-->
+<!--    <div class="sidebar mt-2">-->
+<!--        <span onclick="toggleSidebar()" class="crossBtn">&times;</span>-->
+<!--        <a href="#" th:href="@{/admin/manage/course/viewall}" class="item"><i class="fa-solid fa-users-between-lines"></i> View All Courses</a>-->
+<!--        <a href="#" th:href="@{/admin/manage/course/add}" class="item"><i class="fa-duotone fa-graduation-cap"></i> Create Course</a>-->
+<!--        <a href="#" class="item">Random</a>-->
+<!--        <a href="#" class="item">Random</a>-->
+<!--        <div class="divider">-->
+<!--        </div>-->
+<!--    </div>-->
+
+
+<!--    <div th:replace="~{/admin/admin_dashboard :: sidebar}"></div>-->
+    <!--End Sidebar-->
+
+    <!--Content Area-->
+    <div class="content mt-5">
+        <i onclick="toggleSidebar()" class="fas fa-bars m-3"></i>
+
+        <!-- Message Box -->
+        <div th:if="${session.message}" class="container">
+            <div th:classappend="${'alert-'+session.message.type}" class="alert text-center" role="alert">
+                <span th:text="${session.message.content}"></span>
+            </div>
+
+<!--           <div th:text="${session.removeAttribute('message')}"></div>-->
+        </div>
+
+<!--        <div th:replace="~{/admin/admin_dashboard :: content}"></div>-->
+    <div th:replace="${content}">
+    </div>
+    <!--End Content Area-->
+
+
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="@{/js/script.js}"></script>
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+    function deleteContact(userId){
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete it!"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                window.location="unimanagement/admin/manage/student/delete/"+{userId};
+                Swal.fire({
+                    title: "Deleted!",
+                    text: "Your file has been deleted.",
+                    icon: "success"
+                });
+            }
+
+        });
+    }
+</script>
+</body>
+</html>

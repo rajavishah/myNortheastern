@@ -3,17 +3,18 @@ package com.example.unimanagement.model;
 import jakarta.persistence.*;
 
 @Entity
-//@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+//@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 //@DiscriminatorColumn(name = "user_type", discriminatorType = DiscriminatorType.STRING)
+//@Access(AccessType.FIELD)
 @Table(name = "user")
 public class User {
 
     @Id
-//    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @GeneratedValue(strategy = GenerationType.TABLE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+//    @GeneratedValue(strategy = GenerationType.TABLE)
     @Column(name = "user_id")
-    private long userId;
+    private int userId;
 
     @Column(name = "first_name")
     private String fName;
@@ -32,19 +33,19 @@ public class User {
     @Enumerated(EnumType.STRING)
     private UserRole role;
 
-    public long getUserId() {
+    public int getUserId() {
         return userId;
     }
 
-    public void setUserId(long userId) {
+    public void setUserId(int userId) {
         this.userId = userId;
     }
 
-    public String getfName() {
+    public String getFName() {
         return fName;
     }
 
-    public void setfName(String fName) {
+    public void setFName(String fName) {
         this.fName = fName;
     }
 
@@ -92,7 +93,7 @@ public class User {
                 '}';
     }
 
-    public User(long userId, String fName, String lName, String email, String password, UserRole role) {
+    public User(int userId, String fName, String lName, String email, String password, UserRole role) {
         this.userId = userId;
         this.fName = fName;
         this.lName = lName;

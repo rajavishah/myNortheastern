@@ -20,20 +20,20 @@
 
 <body>
 <div class="container">
-
+    <p>name</p>
     <div class="row">
         <form:form modelAttribute="student" class="form-horizontal" enctype="multipart/form-data">
-            <form:input type="text" class="form-control" id="grade"
-                        path="grade" placeholder="A Grade.." required="required" />
+            <form:input type="number" class="form-control" id="grades"
+                        path="grades" placeholder="98" required="required" />
 
             <form:input type="text" class="form-control" id="email"
                         path="email" placeholder="email@gmail.com" required="required" />
 
-            <form:input type="text" class="form-control" id="first_name"
-                        path="first_name" placeholder="First Name" required="required" />
+            <form:input type="text" class="form-control" id="fname"
+                        path="fName" placeholder="First Name" required="required" />
 
-            <form:input type="text" class="form-control" id="last_name"
-                        path="last_name" placeholder="Last Name" required="required" />
+            <form:input type="text" class="form-control" id="lname"
+                        path="lName" placeholder="Last Name" required="required" />
 
 
             <form:input type="text" class="form-control" id="password"

@@ -1,10 +1,46 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{admin/base::layout(~{::section})}">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="UTF-8">
+    <title>Student Specific Details</title>
 </head>
 <body>
-$END$
+    <section>
+        <div class="card mr-3 ml-3">
+            <div class="card-body">
+                <div class="container text-center">
+                    <img class="" style="width: 200px" src="" th:src="@{/img/Student-Profile.png}"/>
+
+                    <h3 class="mt-3">
+                        <span th:text="${student.fName}"></span>
+                        <span th:text="${student.lName}"></span>
+                    </h3>
+
+                    <table class="table">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th>NUID#</th>
+                                <th>S2023NU<span th:text="${student.userId}"></span></th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            <tr>
+                                <td>Email</td>
+                                <td th:text="${student.email}"></td>
+                            </tr>
+                            <tr>
+                                <td>Password</td>
+                                <td th:text="${student.password}"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <a th:href="@{'/admin/manage/student/update/'+${student.userId}}" class="btn btn-primary btn-sm">Update</a>
+                    <a th:href="@{'/admin/manage/student/delete/'+${student.userId}}" class="btn btn-danger btn-sm">Delete</a>
+
+                </div>
+            </div>
+        </div>
+    </section>
 </body>
 </html>

@@ -1,11 +1,12 @@
 package com.example.unimanagement.model;
 
 public enum UserRole {
-    Admin,
-    Student,
-    Faculty;
+    ADMIN,
+    STUDENT,
+    FACULTY;
 
     UserRole() {
+
     }
 
     @Override

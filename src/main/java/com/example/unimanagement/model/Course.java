@@ -3,6 +3,7 @@ package com.example.unimanagement.model;
 
 import jakarta.persistence.*;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @Entity
 public class Course {
@@ -21,14 +22,13 @@ public class Course {
     @Column(name = "course_term")
     private String term;
 
-
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "faculty_id")
     private Faculty faculty;
 
     private String timings;
 
-    @ManyToMany(mappedBy = "myCourses")
+    @ManyToMany(mappedBy = "myCourses", fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
     private Set<Student> registeredStudents;
 
     public int getCrn() {
@@ -96,8 +96,17 @@ public class Course {
                 ", term='" + term + '\'' +
                 ", faculty=" + faculty +
                 ", timings='" + timings + '\'' +
-                ", registeredStudents=" + registeredStudents +
+                ", registeredStudents=" + getStudentIds() +
                 '}';
+    }
+
+    private Set<Integer> getStudentIds() {
+        if (registeredStudents != null) {
+            return registeredStudents.stream()
+                    .map(Student::getUserId)
+                    .collect(Collectors.toSet());
+        }
+        return null;
     }
 
     public Course(int crn, String courseNumber, String title, String term, Faculty faculty, String timings, Set<Student> registeredStudents) {

@@ -21,7 +21,6 @@
         <a class="navbar-brand" href="#">Admin-Dashboard</a>
     </div>
     <ul class="nav navbar-nav">
-<%--        <li class="nav-item"><a  href="${pageContext.request.contextPath}/admin/explore.htm"></a></li>--%>
         <c:if test="${param.error == null && sessionScope['username'] != null}" >
             <li class="nav-item"><a href="${pageContext.request.contextPath}/admin.htm"> <c:out value="${sessionScope['username'].getFullname()}"></c:out> </a></li>
             <c:if test="${sessionScope['username'].getUsertype().equals('ADMIN')}">

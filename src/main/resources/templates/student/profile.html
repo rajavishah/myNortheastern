@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{student/base::layout(~{::section})}">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Student Profile Page</title>
+</head>
+<body>
+<section>
+    <div class="card mr-3 ml-3">
+        <div class="card-body">
+            <div class="container text-center">
+                <img class="" style="width: 200px" src="" th:src="@{/img/Student-Profile.png}"/>
+
+                <h3 class="mt-3">
+                    <span th:text="${student.fName}"></span>
+                    <span th:text="${student.lName}"></span>
+                </h3>
+
+                <table class="table">
+                    <thead class="thead-dark">
+                    <tr>
+                        <th>NUID#</th>
+                        <th>S2023NU<span th:text="${student.userId}"></span></th>
+                    </tr>
+                    </thead>
+
+                    <tbody>
+                    <tr>
+                        <td>Email</td>
+                        <td th:text="${student.email}"></td>
+                    </tr>
+                    <tr>
+                        <td>Password</td>
+                        <td th:text="${student.password}"></td>
+                    </tr>
+                    </tbody>
+                </table>
+                <a th:href="@{'/student/profile/update/'+${student.userId}}" class="btn btn-primary btn-sm">Update Profile</a>
+
+            </div>
+
+            <!-- Display registered courses -->
+            <h4 class="mt-3 text-center">---REGISTERED COURSES---</h4>
+            <table class="table text-center">
+                <thead class="thead-dark">
+                <tr>
+                    <th>Course ID</th>
+                    <th>Course Name</th>
+                    <th>Taught By</th>
+                    <th>Timings</th>
+                    <th>Term</th>
+                    <th>Action</th>
+                </tr>
+                </thead>
+
+                <tbody>
+                <!-- Iterate over the registered courses and display information for each -->
+                <tr th:each="course : ${student.myCourses}">
+                    <td th:text="${course.crn}"></td>
+                    <td th:text="${course.title}"></td>
+                    <td th:text="${course.faculty?.fName}"></td>
+                    <td th:text="${course.timings}"></td>
+                    <td th:text="${course.term}"></td>
+                    <td>
+<!--                        <form method="post" th:action="@{'/student/manage/course/drop/'+${student.userId}+'/'+${course.crn}}">-->
+<!--                            <button type="submit" class="btn btn-danger btn-sm">Drop</button>-->
+<!--                        </form>-->
+                        <a th:href="@{'/student/manage/course/drop/'+${student.userId}+'/'+${course.crn}}" class="btn btn-primary btn-sm text-center">Drop</a>
+
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+<!--            <a th:href="@{'/student/manage/course/update/'+${student.userId}}" class="btn btn-primary btn-sm text-center">Update Course Registration</a>-->
+
+
+        </div>
+    </div>
+</section>
+</body>

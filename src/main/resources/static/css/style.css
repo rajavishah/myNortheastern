@@ -1,0 +1,113 @@
+body{
+    background: grey;
+}
+
+.bg-primary{
+    background: #656677;
+    color: fuchsia;
+}
+.banner{
+    width: 100%;
+    height:93vh;
+    background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url("../img/Northeastern-Home.jpg");
+    background-size: cover;
+    color: aliceblue;
+}
+
+.my-card{
+    padding: 20px;
+    background: #ffffff;
+}
+
+#login .container #login-row #login-column #login-box {
+    margin-top: 120px;
+    max-width: 700px;
+    height: 420px;
+    border: 1px solid #9C9C9C;
+    background-color: #EAEAEA;
+}
+
+#login .container #login-row #login-column #login-box #login-form {
+    padding: 20px;
+}
+
+#login .container #login-row #login-column #login-box #login-form #register-link {
+    margin-top: -85px;
+}
+
+@media only screen and (max-width: 600px) {
+    /*Styling Admin Dashboard - Sidebar*/
+    .sidebar{
+        display: none;
+        width: 80% !important;
+        background: white;
+        position: fixed;
+        height: 100vh;
+        padding: 20px;
+
+    }
+
+    .content{
+        margin-left: 0% !important;
+    }
+}
+
+.sidebar{
+    width: 18%;
+    background: white;
+    position: fixed;
+    height: 100%;
+    padding: 45px;
+    z-index: 10;
+}
+
+
+.sidebar a{
+    display: block;
+    width: 100%;
+    padding: 10px 25px;
+    text-decoration: none;
+    color: #656677;
+}
+
+.sidebar a:hover{
+    background: #e2e2e2;
+}
+
+.sidebar .divider{
+    height: 0.5px;
+    width: 100%;
+    background: #e2e2e2;
+    margin-top: 10px;
+}
+
+.content{
+    margin-left: 20%;
+}
+
+.sidebar .crossBtn{
+    position: absolute;
+    top: 0;
+    right: 35px;
+    font-size: 36px;
+    cursor: pointer;
+}
+
+/*Search CSS*/
+.search-container{
+    position: relative;
+    display: inline-block;
+    width: 100%;
+}
+
+.search-result{
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background: white;
+    z-index: 10;
+    padding: 10px;
+    border: 1px solid #e2e2e2;
+    display: none;
+}

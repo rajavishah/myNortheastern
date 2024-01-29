@@ -1,10 +1,17 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{base::layout(~{::section})}">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="UTF-8">
+    <title>Home</title>
 </head>
 <body>
-$END$
+    <section class="banner d-flex justify-content-center align-items-center">
+        <div class="text-center">
+            <h1 class="font-weight-bold">MY NORTHEASTERN</h1>
+            <p>Welcome! Find your role below to log in to the appropriate Northeastern service.</p>
+            <button class="btn bg-primary btn-lg text-white">Get Started</button>
+        </div>
+    </section>
+
 </body>
 </html>

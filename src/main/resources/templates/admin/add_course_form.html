@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{admin/base::layout(~{::section})}">
+<head>
+    <meta charset="UTF-8">
+    <title>Add New Course Details</title>
+</head>
+<body>
+<!--<section th:fragment="content">-->
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 offset-md-3">
+                <div class="my-card mt-3">
+                    <div class="container text-center">
+                        <img class="" style="width: 200px" src="" th:src="@{/img/Northeastern-Course.png}"/>
+                    </div>
+                    <h1 class="text-center">Add New Course Details Here!</h1>
+
+                    <form action="/manage/course/add" th:action="@{/admin/manage/course/add}" method="post" th:object="${course}">
+                        <div class="form-group">
+                            <label for="course_number_field">Course Number</label>
+                            <input name="courseNumber" type="text" class="form-control" id="course_number_field" aria-describedby="courseNumberHelp" placeholder="CSYE6220" required th:value="${course?.courseNumber}"/>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="title_field">Course Title</label>
+                            <input name="title" type="text" class="form-control" id="title_field" aria-describedby="titleHelp" placeholder="Enterprise Software Design" required th:value="${course?.title}"/>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="term_field">Term</label>
+                            <input name="term" type="text" class="form-control" id="term_field" aria-describedby="termHelp" placeholder="Fall 2023" required th:value="${course?.term}"/>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="timings_field">Timings</label>
+                            <input name="timings" type="text" class="form-control" id="timings_field" aria-describedby="timingsHelp" placeholder="MW 10:30 to 2:00PM" required th:value="${course?.timings}"/>
+                        </div>
+
+                        <!--For Faculty-->
+<!--                        <div class="form-group">-->
+<!--                            <label for="faculty_field">Faculty</label>-->
+<!--                            <select name="faculty_id" class="form-control" id="faculty_field" required>-->
+<!--&lt;!&ndash;                                <c:forEach var="faculty" items="${requestScope['facultyList']}">&ndash;&gt;-->
+<!--&lt;!&ndash;                                    <option value="${faculty.getId()}">&ndash;&gt;-->
+<!--&lt;!&ndash;                                        <c:out value="${faculty.userId}"></c:out>&ndash;&gt;-->
+<!--&lt;!&ndash;                                    </option>&ndash;&gt;-->
+<!--&lt;!&ndash;                                </c:forEach>&ndash;&gt;-->
+<!--                                <option th:each="faculty : ${requestScope['facultyList']}" th:value="${faculty.userId}" th:text="${faculty.fName}"></option>-->
+<!--                            </select>-->
+<!--                        </div>-->
+                        <div class="form-group">
+                            <label for="faculty_field">Faculty</label>
+                            <select name="facultyId" class="form-control" id="faculty_field" required>
+                                <option th:each="faculty : ${facultyList}" th:value="${faculty.userId}" th:text="${faculty.fName}"></option>
+                            </select>
+                        </div>
+
+
+                        <!-- Checkboxes for selecting Students -->
+<!--                        <div class="form-group">-->
+<!--                            <label>Registered Students</label>-->
+<!--                            <div th:each="student : ${students}">-->
+<!--                                <input type="checkbox" th:field="*{registeredStudents}" th:value="${student.id}"/>-->
+<!--                                <label th:for="${'student_' + student.id}" th:text="${student.name}"></label>-->
+<!--                            </div>-->
+<!--                        </div>-->
+
+                        <div class="container text-center">
+                            <button type="submit" class="btn bg-danger btn-block text-white">
+                                Add Course
+                            </button>
+                            <button type="reset" class="btn bg-danger btn-block text-white">
+                                Reset Details
+                            </button>
+                        </div>
+
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</section>
+
+
+</body>
+</html>

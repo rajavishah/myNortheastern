@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{student/base::layout(~{::section})}">
+<head>
+    <meta charset="UTF-8">
+    <title>Course Specific Details</title>
+</head>
+<body>
+<!--<section th:fragment="content">-->
+<section>
+    <div class="card mr-3 ml-3">
+        <div class="card-body">
+            <div class="container text-center">
+                <img class="" style="width: 200px" src="" th:src="@{/img/Northeastern-Course.png}"/>
+
+                <h3 class="mt-3">
+                    <span th:text="${course.courseNumber}"></span>
+                    <span th:text="${course.title}"></span>
+                </h3>
+
+                <table class="table">
+                    <thead class="thead-dark">
+                    <tr>
+                        <th>CourseID#</th>
+                        <th>C2023NU<span th:text="${course.crn}"></span></th>
+                    </tr>
+                    </thead>
+
+                    <tbody>
+                    <tr>
+                        <td>Term</td>
+                        <td th:text="${course.term}"></td>
+                    </tr>
+                    <tr>
+                        <td>Taught By</td>
+                        <td th:text="${course.faculty?.fName}"></td>
+                    </tr>
+
+                    <!--                    <tr>-->
+                    <!--                        <td>Registered Students</td>-->
+                    <!--                        <td th:text="${course.registeredStudents?.fName}"></td>-->
+                    <!--                    </tr>-->
+                    </tbody>
+                </table>
+                <a th:href="@{'/student/manage/course/register/'+${course.crn}}" class="btn btn-primary btn-sm">Register</a>
+                <a th:href="@{'/student/manage/course/drop/'+${course.crn}}" class="btn btn-danger btn-sm">Drop</a>
+
+            </div>
+        </div>
+    </div>
+</section>
+</body>
+</html>
